@@ -1,4 +1,6 @@
-const { Component } = require("react");
+import { Component } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Searchbar extends Component {
   state = {
@@ -11,6 +13,12 @@ class Searchbar extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
+    if(this.state.name.trim() === ''){
+      // alert('Щось напиши');
+      toast.error('Щось напиши');
+      return;
+    }
 
     this.props.onSubmit(this.state.name);
     this.setState({name: ''});
