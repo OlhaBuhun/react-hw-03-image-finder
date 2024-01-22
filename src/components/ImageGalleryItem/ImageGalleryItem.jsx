@@ -1,9 +1,12 @@
 import { Component } from "react";
-import { Modal } from "components/Modal/Modal";
+// import { Modal } from "components/Modal/Modal";
 
 
 class ImageGalleryItem extends Component {
   state = {
+    id: '',
+    webformatURL: '',
+    
     isModalOpen: false,
   }
 
@@ -18,12 +21,13 @@ class ImageGalleryItem extends Component {
       isModalOpen: false,
     }))
   }
+ 
 
   render() {
     return (
-      <li class="gallery-item">
-        <img src="" alt="" onClick={this.openModal}/>
-        <Modal isOpen={this.openModal} onClose={this.closeModal}/>
+      <li >
+        <img src={this.webformatURL} alt="" onClick={this.openModal}/>
+        {/* <Modal isOpen={this.openModal} onClose={this.closeModal}/> */}
       </li>
     )
   }

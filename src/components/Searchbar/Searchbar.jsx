@@ -4,24 +4,24 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class Searchbar extends Component {
   state = {
-    name: '',
+    searchQueru: '',
   }
 
   handleNameChange = event => {
-    this.setState({name: event.currentTarget.value.toLowerCase()})
+    this.setState({searchQueru: event.currentTarget.value.toLowerCase()})
   }
 
   handleSubmit = event => {
     event.preventDefault();
 
-    if(this.state.name.trim() === ''){
+    if(this.state.searchQueru.trim() === ''){
       // alert('Щось напиши');
       toast.error('Щось напиши');
       return;
     }
 
-    this.props.onSubmit(this.state.name);
-    this.setState({name: ''});
+    this.props.onSubmit(this.state.searchQueru);
+    this.setState({searchQueru: ''});
   }
   
 
@@ -38,8 +38,8 @@ class Searchbar extends Component {
             // autocomplete="off"
             // autofocus
             placeholder="Search images and photos"
-            name="name"
-            value={this.state.name}
+            name="searchQueru"
+            value={this.state.searchQueru}
             onChange={this.handleNameChange}
           />
         </form>
