@@ -18,14 +18,17 @@ class App extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
+    const { searchQueru, page } = this.state;
+
     if(
-      prevState.searchQueru !== this.state.searchQueru ||
-      prevState.page !== this.state.page
+      prevState.searchQueru !== searchQueru ||
+      prevState.page !== page
       ){
         try {
           this.setState({isLoading: true, });
-
-          const { hits,  } = await fetchImages(this.state.searchQueru, this.state.page);
+          console.log(searchQueru);
+          console.log(searchQueru.split('/')[1]);
+          const { hits,  } = await fetchImages(searchQueru.split('/')[1], page);
 
           // if(totalHits === 0) {
           //   toast.error('Sorry, there are no images matching your search query. Please try again.');
@@ -43,12 +46,11 @@ class App extends Component {
   handleFormSubmit = newSearchQueru => {
     console.log(newSearchQueru);
     this.setState({
-      // searchQueru: `${Date.now()}/${newSearchQueru}`,
-      searchQueru: newSearchQueru, 
+      searchQueru: `${Date.now()}/${newSearchQueru}`,
+      // searchQueru: newSearchQueru, 
       page: 1,
       images: [],
     });
-
   }
 
   handleLoadMore = () => {

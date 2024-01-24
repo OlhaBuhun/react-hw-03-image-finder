@@ -1,34 +1,59 @@
 import { Component } from "react";
-// import { Modal } from "components/Modal/Modal";
+import { ModalWindow } from "components/Modal/ModalWindow";
+import { GaleryItem, GaleryItemImage } from "./ImageGalleryItem.styled";
 
 
 class ImageGalleryItem extends Component {
   state = {
-    id: '',
-    webformatURL: '',
-    
+    // id: '',
+    // webformatURL: '',
+    // largeImageURL: '',
+    // tags:'',
     isModalOpen: false,
   }
 
-  openModal = ()  => {
-    this.setState(prevState => ({
-      isModalOpen: true,
-    }))
-  }
+  // openModal = (largeImageURL, tags) => {
+  //   this.toggleModal();
+  //   this.setState({
+  //     largeImageURL,
+  //     tags,
+  //   });
+  // };
 
-  closeModal = ()  => {
-    this.setState(prevState => ({
-      isModalOpen: false,
-    }))
+  // toggleModal = () => {
+  //   this.setState(({ showModal }) => ({
+  //     showModal: !showModal,
+  //   }));
+  // };
+
+  openModal = () => {
+    this.setState ({
+      isModalOpen: true,
+    })
   }
  
+  closeModal = () => {
+    this.setState ({
+      isModalOpen: false,
+    })
+  }
 
   render() {
+    const { isModalOpen} = this.state;
+    const {webformatURL, largeImageURL, tags,}
+    = this.props;
+     
+
     return (
-      <li >
-        <img src={this.webformatURL} alt="" onClick={this.openModal}/>
-        {/* <Modal isOpen={this.openModal} onClose={this.closeModal}/> */}
-      </li>
+      <GaleryItem onClick={this.openModal}>
+        <GaleryItemImage src={webformatURL} alt={tags} />
+        <ModalWindow
+          onCloseModal={this.closeModal}
+          largeImageURL={largeImageURL}
+          alt={tags}
+          isModalOpen={isModalOpen}
+        />
+      </GaleryItem>
     )
   }
   
