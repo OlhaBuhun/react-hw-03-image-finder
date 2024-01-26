@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { HiDocumentMagnifyingGlass } from "react-icons/hi2";
+import { SearchForm, SearchFormButton, SearchFormInput, SearchbarHeader } from "./Searchbar.styled";
 
 class Searchbar extends Component {
   state = {
@@ -27,13 +29,9 @@ class Searchbar extends Component {
 
   render() {
     return (
-      <header >
-        <form  onSubmit={this.handleSubmit}>
-          <button type="submit" >
-            <span >Search</span>
-          </button>
-
-          <input
+      <SearchbarHeader >
+        <SearchForm  onSubmit={this.handleSubmit}>
+          <SearchFormInput
             type="text"
             // autocomplete="off"
             // autofocus
@@ -42,8 +40,11 @@ class Searchbar extends Component {
             value={this.state.searchQueru}
             onChange={this.handleNameChange}
           />
-        </form>
-      </header>
+          <SearchFormButton type="submit" >
+            <span >< HiDocumentMagnifyingGlass size="40"/></span>
+          </SearchFormButton>
+        </SearchForm>
+      </SearchbarHeader>
     )
   }
 

@@ -45,8 +45,8 @@ class ImageGalleryItem extends Component {
      
 
     return (
-      <GaleryItem onClick={this.openModal}>
-        <GaleryItemImage src={webformatURL} alt={tags} />
+      <GaleryItem >
+        <GaleryItemImage src={webformatURL} alt={tags} onClick={this.openModal}/>
         <ModalWindow
           onCloseModal={this.closeModal}
           largeImageURL={largeImageURL}

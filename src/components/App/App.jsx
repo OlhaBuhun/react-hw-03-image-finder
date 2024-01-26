@@ -3,7 +3,7 @@ import { ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from "../Searchbar/Searchbar";
 import ImageGallery from "../ImageGallery/ImageGallery";
-import Loader from "../Loader/Loader";
+import Button from "../Button/Button";
 import { AppStyled } from "./App.styled";
 import { fetchImages } from "api";
 
@@ -27,13 +27,21 @@ class App extends Component {
         try {
           this.setState({isLoading: true, });
           console.log(searchQueru);
-          console.log(searchQueru.split('/')[1]);
-          const { hits,  } = await fetchImages(searchQueru.split('/')[1], page);
+          const newSearchQuery = searchQueru.split('/')[1];
 
-          // if(totalHits === 0) {
+          const { hits,  } = await fetchImages(newSearchQuery, page);
+
+          // if(totalHits === 0 || ) {
           //   toast.error('Sorry, there are no images matching your search query. Please try again.');
           // }
-          this.setState({images: hits})
+          // this.setState({images: hits});
+          this.setState(prevState => ({
+            images: [...prevState.images, ...hits]
+          }));
+
+
+
+
         } catch (error) {
           toast.error('Opps! Somathing went wrong! Please try reloading this page');
         } finally {
@@ -86,7 +94,7 @@ class App extends Component {
         {isLoading && (
           <p>Loading ....</p>
         )}
-        <Loader onClickButton={this.handleLoadMore}/>
+        <Button onClickButton={this.handleLoadMore}/>
         <ToastContainer autoClose={3000} />
       </AppStyled>
     );
