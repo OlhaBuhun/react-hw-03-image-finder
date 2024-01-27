@@ -5,26 +5,10 @@ import { GaleryItem, GaleryItemImage } from "./ImageGalleryItem.styled";
 
 class ImageGalleryItem extends Component {
   state = {
-    // id: '',
-    // webformatURL: '',
-    // largeImageURL: '',
-    // tags:'',
+   
     isModalOpen: false,
   }
 
-  // openModal = (largeImageURL, tags) => {
-  //   this.toggleModal();
-  //   this.setState({
-  //     largeImageURL,
-  //     tags,
-  //   });
-  // };
-
-  // toggleModal = () => {
-  //   this.setState(({ showModal }) => ({
-  //     showModal: !showModal,
-  //   }));
-  // };
 
   openModal = () => {
     this.setState ({

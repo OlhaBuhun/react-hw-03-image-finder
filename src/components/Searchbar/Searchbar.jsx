@@ -17,7 +17,6 @@ class Searchbar extends Component {
     event.preventDefault();
 
     if(this.state.searchQueru.trim() === ''){
-      // alert('Щось напиши');
       toast.error('Щось напиши');
       return;
     }
@@ -33,8 +32,6 @@ class Searchbar extends Component {
         <SearchForm  onSubmit={this.handleSubmit}>
           <SearchFormInput
             type="text"
-            // autocomplete="off"
-            // autofocus
             placeholder="Search images and photos"
             name="searchQueru"
             value={this.state.searchQueru}

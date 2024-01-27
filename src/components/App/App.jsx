@@ -6,6 +6,7 @@ import ImageGallery from "../ImageGallery/ImageGallery";
 import Button from "../Button/Button";
 import { AppStyled } from "./App.styled";
 import { fetchImages } from "api";
+import Loader from "components/Loader/Loader";
 
 class App extends Component {
 
@@ -13,7 +14,7 @@ class App extends Component {
     searchQueru: '',
     images: [],
     isLoading: false,
-    error: false,
+    isButtonShow: false,
     page: 1,
   }
 
@@ -25,39 +26,39 @@ class App extends Component {
       prevState.page !== page
       ){
         try {
-          this.setState({isLoading: true, });
-          console.log(searchQueru);
+          this.setState({isLoading: true, isButtonShow: true});
+
           const newSearchQuery = searchQueru.split('/')[1];
 
-          const { hits,  } = await fetchImages(newSearchQuery, page);
-
-          // if(totalHits === 0 || ) {
-          //   toast.error('Sorry, there are no images matching your search query. Please try again.');
-          // }
-          // this.setState({images: hits});
+          const { hits, totalHits } = await fetchImages(newSearchQuery, page);
+          
+          if(!totalHits ) {
+      
+            return toast.warn('Sorry, there are no images matching your search query. Please try again.');
+          }
+          
           this.setState(prevState => ({
             images: [...prevState.images, ...hits]
           }));
 
 
-
-
         } catch (error) {
+          // this.setState({ error });
           toast.error('Opps! Somathing went wrong! Please try reloading this page');
         } finally {
-          this.setState({isLoading:false})
+          this.setState({isLoading:false, isButtonShow: false,})
         }
 
     }
   }
 
   handleFormSubmit = newSearchQueru => {
-    console.log(newSearchQueru);
+
     this.setState({
       searchQueru: `${Date.now()}/${newSearchQueru}`,
-      // searchQueru: newSearchQueru, 
       page: 1,
       images: [],
+      isButtonShow: false,
     });
   }
 
@@ -71,7 +72,7 @@ class App extends Component {
 
 
   render() {
-    const { images, isLoading} = this.state;
+    const { images, isLoading, isButtonShow} = this.state;
 
     return (
       <AppStyled
@@ -92,9 +93,12 @@ class App extends Component {
           <ImageGallery images={images}/>
         )}
         {isLoading && (
-          <p>Loading ....</p>
+          // <p>Loading ....</p>
+          <Loader />
         )}
+        {(isButtonShow && 
         <Button onClickButton={this.handleLoadMore}/>
+        )}
         <ToastContainer autoClose={3000} />
       </AppStyled>
     );
