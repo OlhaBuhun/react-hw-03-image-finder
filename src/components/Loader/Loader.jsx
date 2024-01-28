@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ColorRing } from 'react-loader-spinner';
 
 const Loader = () => (

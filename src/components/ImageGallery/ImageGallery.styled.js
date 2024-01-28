@@ -11,5 +11,4 @@ export const ImageGaleryList = styled.ul`
   list-style: none;
   margin-left: auto;
   margin-right: auto;
-`
-
+`;

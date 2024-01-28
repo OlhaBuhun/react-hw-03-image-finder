@@ -6,4 +6,4 @@ export const AppStyled = styled.div`
   padding: 30px;
   justify-content: center;
   align-items: center;
-`
+`;

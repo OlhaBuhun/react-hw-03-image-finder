@@ -1,37 +1,36 @@
 /* eslint-disable react/prop-types */
-import { Component } from "react";
-import { ModalWindow } from "components/Modal/ModalWindow";
-import { GaleryItem, GaleryItemImage } from "./ImageGalleryItem.styled";
-
+import { Component } from 'react';
+import { ModalWindow } from 'components/Modal/ModalWindow';
+import { GaleryItem, GaleryItemImage } from './ImageGalleryItem.styled';
 
 class ImageGalleryItem extends Component {
   state = {
-   
     isModalOpen: false,
-  }
-
+  };
 
   openModal = () => {
-    this.setState ({
+    this.setState({
       isModalOpen: true,
-    })
-  }
- 
+    });
+  };
+
   closeModal = () => {
-    this.setState ({
+    this.setState({
       isModalOpen: false,
-    })
-  }
+    });
+  };
 
   render() {
-    const { isModalOpen} = this.state;
-    const {webformatURL, largeImageURL, tags}
-    = this.props;
-     
+    const { isModalOpen } = this.state;
+    const { webformatURL, largeImageURL, tags } = this.props;
 
     return (
-      <GaleryItem >
-        <GaleryItemImage src={webformatURL} alt={tags} onClick={this.openModal}/>
+      <GaleryItem>
+        <GaleryItemImage
+          src={webformatURL}
+          alt={tags}
+          onClick={this.openModal}
+        />
         <ModalWindow
           onCloseModal={this.closeModal}
           largeImageURL={largeImageURL}
@@ -39,9 +38,8 @@ class ImageGalleryItem extends Component {
           isModalOpen={isModalOpen}
         />
       </GaleryItem>
-    )
+    );
   }
-  
 }
 
 export default ImageGalleryItem;
