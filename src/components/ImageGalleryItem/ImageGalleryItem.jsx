@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Component } from "react";
 import { ModalWindow } from "components/Modal/ModalWindow";
 import { GaleryItem, GaleryItemImage } from "./ImageGalleryItem.styled";
@@ -24,7 +25,7 @@ class ImageGalleryItem extends Component {
 
   render() {
     const { isModalOpen} = this.state;
-    const {webformatURL, largeImageURL, tags,}
+    const {webformatURL, largeImageURL, tags}
     = this.props;
      
 

@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import ImageGalleryItem from "components/ImageGalleryItem/ImageGalleryItem";
-
 import {  ImageGaleryList } from "./ImageGallery.styled";
 
 const ImageGallery = ({images}) => (
@@ -17,5 +17,7 @@ const ImageGallery = ({images}) => (
 </ImageGaleryList>
 )
 
-export default ImageGallery;
+
+
+export default ImageGallery
 

@@ -86,14 +86,11 @@ class App extends Component {
         // }}
       >
         <Searchbar onSubmit={this.handleFormSubmit}/>
-        {/* {error && (
-          <b>Opps! Somathing went wrong! Please try reloading this page</b>
-        )} */}
+       
         {images.length > 0 && (
           <ImageGallery images={images}/>
         )}
         {isLoading && (
-          // <p>Loading ....</p>
           <Loader />
         )}
         {(isButtonShow && 
@@ -104,6 +101,6 @@ class App extends Component {
     );
   }
  
-};
+}
 
 export default App;
